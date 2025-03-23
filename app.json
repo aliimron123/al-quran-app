@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "nove-app",
-    "slug": "nove-app",
+    "name": "novel-app",
+    "slug": "novel-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -15,7 +15,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.imron_humaedi.novelapp"
     },
     "web": {
       "bundler": "metro",
@@ -36,6 +37,14 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "d01d09af-51bc-4102-b72a-8d0346fd4fe5"
+      }
     }
   }
 }
