@@ -3,10 +3,13 @@ import { View, StyleSheet, Dimensions } from 'react-native';
 import { Image } from 'expo-image';
 import { Text } from 'react-native-paper';
 import useCurrentTime from '@/hooks/useCurrentTime';
+import { useLocation } from '@/provider/location-provider';
 
 const { width } = Dimensions.get('window');
 
 export function Hero() {
+	const location = useLocation();
+
 	// blur
 	const blurhash =
 		'|rF?hV%2WCj[ayj[a|j[az_NaeWBj@ayfRayfQfQM{M|azj[azf6fQfQfQIpWXofj[ayj[j[fQayWCoeoeaya}j[ayfQa{oLj?j[WVj[ayayj[fQoff7azayj[ayj[j[ayofayayayj[fQj[ayayj[ayfjj[j[ayjuayj[';
@@ -38,12 +41,13 @@ export function Hero() {
 							fontWeight: 600,
 							margin: 'auto',
 							width: 7,
+							color: 'black',
 						}}>
 						{showColon && ':'}
 					</Text>
 					<Text style={styles.title}>{minutes}</Text>
 				</View>
-				<Text>Jaln subur no</Text>
+				<Text style={styles.textLocation}>{location?.formattedAddress}</Text>
 			</View>
 		</View>
 	);
@@ -59,24 +63,26 @@ const styles = StyleSheet.create({
 	},
 	image: {
 		width: '100%',
-		height: '100%',
+		height: '85%',
 		borderEndEndRadius: 20,
 		borderBottomStartRadius: 20,
 	},
 	textContent: {
 		position: 'absolute',
-		zIndex: 50,
-		justifyContent: 'center',
+		top: '45%', // Move it to the middle
+		left: 0,
+		right: 0,
+		alignSelf: 'center',
+		transform: [{ translateY: -50 }], // Adjust for exact centering
 		alignItems: 'center',
-		left: width / 2 - 60,
-		top: 110,
-		shadowOffset: { width: 0, height: 2 },
-		shadowColor: '#000',
-		shadowOpacity: 0.2,
-		shadowRadius: 4,
+		justifyContent: 'center',
+		zIndex: 50,
 	},
 	title: {
 		fontSize: 50,
 		color: '#0f0529',
+	},
+	textLocation: {
+		fontSize: 14,
 	},
 });

@@ -11,6 +11,8 @@ import { useAppState } from '@/hooks/useAppState';
 import { useOnlineManager } from '@/hooks/useOnlineManager';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { queryClient } from '@/service/config/queryClient';
+import { LocationProvider } from '@/provider/location-provider';
+import './global.css';
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
@@ -27,8 +29,10 @@ export default function RootLayout() {
 	const [loaded] = useFonts({
 		SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
 		Almalik: require('../assets/fonts/Almalik.ttf'),
-		Marhaban: require('../assets/fonts/Marhaban.ttf'),
 		Uthmani: require('../assets/fonts/Uthmani.ttf'),
+		Roboto: require('../assets/fonts/Roboto.ttf'),
+		Amari: require('../assets/fonts/AmiriQuran.ttf'),
+		AlMajid: require('../assets/fonts/Al-Majid.ttf'),
 	});
 
 	useEffect(() => {
@@ -43,19 +47,32 @@ export default function RootLayout() {
 
 	return (
 		<QueryClientProvider client={queryClient}>
-			<SafeAreaProvider>
-				<PaperProvider>
-					<Stack>
-						<Stack.Screen
-							name='(tabs)'
-							options={{ headerShown: false }}
-						/>
-						<Stack.Screen name='[ayat]' />
-						<Stack.Screen name='+not-found' />
-					</Stack>
-					<StatusBar style='auto' />
-				</PaperProvider>
-			</SafeAreaProvider>
+			<LocationProvider>
+				<SafeAreaProvider>
+					<PaperProvider>
+						<Stack>
+							<Stack.Screen
+								name='(tabs)'
+								options={{ headerShown: false }}
+							/>
+							<Stack.Screen
+								name='read'
+								options={{ headerShown: false }}
+							/>
+							<Stack.Screen name='doa/index' />
+							<Stack.Screen name='adzan/index' />
+							<Stack.Screen name='kiblat/index' />
+							<Stack.Screen name='hadist/index' />
+							<Stack.Screen
+								name='search/index'
+								options={{ headerShown: false }}
+							/>
+							<Stack.Screen name='+not-found' />
+						</Stack>
+						<StatusBar style='auto' />
+					</PaperProvider>
+				</SafeAreaProvider>
+			</LocationProvider>
 		</QueryClientProvider>
 	);
 }

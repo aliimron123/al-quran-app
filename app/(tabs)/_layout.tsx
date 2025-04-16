@@ -1,14 +1,7 @@
 import { Tabs } from 'expo-router';
 import React from 'react';
 import { Platform } from 'react-native';
-import {
-	House,
-	History,
-	AlarmClock,
-	BookOpen,
-	HandHelping,
-	BookMarked,
-} from 'lucide-react-native';
+import { House, BookOpen, BookMarked } from 'lucide-react-native';
 import { HapticTab } from '@/components/HapticTab';
 import TabBarBackground from '@/components/ui/TabBarBackground';
 
@@ -22,7 +15,6 @@ export default function TabLayout() {
 				headerShown: false,
 				tabBarStyle: Platform.select({
 					ios: {
-						// Use a transparent background on iOS to show the blur effect
 						position: 'absolute',
 					},
 					default: {},
@@ -31,7 +23,21 @@ export default function TabLayout() {
 			<Tabs.Screen
 				name='index'
 				options={{
-					title: 'Read Qu`ran',
+					title: 'Home',
+					tabBarIcon: ({ color }) => (
+						<House
+							size={24}
+							color={color}
+						/>
+					),
+				}}
+			/>
+
+			<Tabs.Screen
+				name='quran'
+				options={{
+					headerShown: true,
+					title: 'Qur`an',
 					tabBarIcon: ({ color }) => (
 						<BookOpen
 							size={24}
@@ -42,24 +48,11 @@ export default function TabLayout() {
 			/>
 
 			<Tabs.Screen
-				name='explore'
+				name='bookmark'
 				options={{
-					title: 'Shalat',
+					title: 'Bookmark',
 					tabBarIcon: ({ color }) => (
-						<AlarmClock
-							size={24}
-							color={color}
-						/>
-					),
-				}}
-			/>
-
-			<Tabs.Screen
-				name='doa'
-				options={{
-					title: 'Do`a',
-					tabBarIcon: ({ color }) => (
-						<HandHelping
+						<BookMarked
 							size={24}
 							color={color}
 						/>

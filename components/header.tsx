@@ -33,7 +33,7 @@ export function Header({
 const styles = StyleSheet.create({
 	safeArea: {
 		position: 'absolute',
-		paddingTop: 20,
+		paddingTop: 30,
 		top: 0,
 		width: '100%',
 		zIndex: 100, // Ensure it's above other elements
